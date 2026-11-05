@@ -23,7 +23,7 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);bac
 .bar{height:8px;background:var(--bd);border-radius:99px;overflow:hidden;margin-top:10px}
 .bar i{display:block;height:100%;background:var(--pri);transition:width .2s}
 .q{font-size:1.1rem;font-weight:600;margin:14px 0}
-.opt{display:flex;gap:12px;width:100%;text-align:left;margin:8px 0;padding:12px 14px;border:2px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx);cursor:pointer}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;margin:8px 0;padding:12px 14px;border:2px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx);cursor:pointer}
 .opt:hover{border-color:var(--pri)}
 .opt b{min-width:26px;height:26px;border-radius:50%;background:var(--bd);display:grid;place-items:center;font-size:.85rem;flex:none}
 .opt.sel{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 12%,var(--card))}
@@ -32,6 +32,10 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);bac
 .opt.no{border-color:var(--no);background:var(--nobg)}
 .rev .opt{cursor:default}
 .rev .opt:not(.ok):not(.no):hover{border-color:var(--bd)}
+img{background:#fff;border-radius:6px}
+img.f{display:block;max-width:100%;height:auto;margin:10px 0;padding:6px}
+img.o{height:48px;max-width:100%;width:auto}
+img.i{height:1.6em;width:auto;vertical-align:middle;padding:0 2px}
 .grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .grid button{width:36px;height:36px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer}
 .grid .done{background:var(--pri);color:#fff;border-color:var(--pri)}
@@ -52,7 +56,7 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);bac
 <section id='start' class='card'>
 <label for='chap'>Phạm vi ôn tập</label><select id='chap'></select>
 <label for='num'>Số câu hỏi</label>
-<select id='num'><option value='0'>Tất cả</option><option value='10'>10 câu</option><option value='20' selected>20 câu</option><option value='30'>30 câu</option><option value='50'>50 câu</option></select>
+<select id='num'><option value='0'>Tất cả</option><option value='10'>10 câu</option><option value='20' selected>20 câu</option><option value='30'>30 câu</option><option value='40'>40 câu</option><option value='50'>50 câu</option></select>
 <label><input type='checkbox' id='shuf' checked> Xáo trộn thứ tự câu hỏi</label>
 <p><button class='btn' id='go'>Bắt đầu làm bài</button></p>
 <p class='note'>Chọn đáp án cho từng câu rồi bấm Nộp bài để xem điểm và giải thích. Phím tắt: A–D hoặc 1–4 để chọn, ← → để chuyển câu.</p>
@@ -63,7 +67,6 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);bac
 <div class='row'><b id='cnt'></b><span class='note'>⏱ <span id='time'>00:00</span></span></div>
 <div class='bar'><i id='prog'></i></div>
 <div class='q' id='qt'></div>
-<p class='note hide' id='qimg'>📎 Câu này có hình vẽ/công thức trong đề gốc (file .doc).</p>
 <div id='opts'></div>
 <div class='row' style='margin-top:14px'>
 <button class='btn ghost' id='prev'>← Câu trước</button>
@@ -96,15 +99,15 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);bac
 <script src='questions.js'></script>
 <script>
 const CH=[['Chương 1: Cơ học vật rắn tuyệt đối',0,53],['Chương 2: Cơ học vật rắn biến dạng',53,91],['Chương 3: Cơ cấu truyền động và chi tiết máy',91,113]];
-// Các câu có hình vẽ/công thức trong đề gốc
-const IMG=new Set([6,9,10,18,21,24,25,27,28,29,30,32,33,39,41,43,44,45,46,47,67,68,69,70,74,82,88,94,97,98,106,109]);
 // Thêm giải thích riêng theo số câu, ví dụ: 1:'Vật rắn tuyệt đối là ...'
 const EXPLAIN={};
 const L='ABCD';
 const clean=s=>s.replace(/[ >]+$/,'');
-const Q=RAW.map((r,i)=>({id:i+1,q:clean(r[0]),o:r[1].map(clean),a:r[2],img:IMG.has(i+1)}));
+const Q=RAW.map((r,i)=>({id:i+1,q:clean(r[0]),o:r[1].map(clean),a:r[2]}));
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+// Ký hiệu §f:tên§ (hình), §o:tên§ (công thức phương án), §i:tên§ (công thức nhỏ) được đổi thành ảnh trong thư mục img
+const rich=s=>esc(s).replace(/§([fio]):(\w+)§/g,(m,c,n)=>`<img class='${c}' src='img/${n}.png' alt=''>`);
 const fmt=ms=>{const s=Math.floor(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
 const view=v=>['start','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==v));
 let S={};
@@ -125,9 +128,8 @@ function render(){
   const n=S.list.length,q=S.list[S.i];
   $('cnt').textContent=`Câu ${S.i+1}/${n} · đã làm ${S.ans.filter(x=>x!=null).length}`;
   $('prog').style.width=((S.i+1)/n*100)+'%';
-  $('qt').textContent=q.q;
-  $('qimg').classList.toggle('hide',!q.img);
-  $('opts').innerHTML=q.o.map((t,k)=>`<button class='opt ${S.ans[S.i]===k?'sel':''}' data-k='${k}'><b>${L[k]}</b><span>${esc(t)}</span></button>`).join('');
+  $('qt').innerHTML=rich(q.q);
+  $('opts').innerHTML=q.o.map((t,k)=>`<button class='opt ${S.ans[S.i]===k?'sel':''}' data-k='${k}'><b>${L[k]}</b><span>${rich(t)}</span></button>`).join('');
   $('grid').innerHTML=S.list.map((_,i)=>`<button data-i='${i}' class='${S.ans[i]!=null?'done':''} ${i===S.i?'cur':''}'>${i+1}</button>`).join('');
   $('prev').disabled=S.i===0;
   $('next').disabled=S.i===n-1;
@@ -154,11 +156,10 @@ function review(){
     const st=a==null?'Chưa trả lời':good?'Đúng':'Sai';
     return `<div class='card rev'>
       <span class='pill'>Câu ${i+1}</span><span class='pill' style='color:${good?'var(--ok)':'var(--no)'}'>${st}</span>
-      <div class='q'>${esc(q.q)}</div>
-      ${q.o.map((t,k)=>`<div class='opt ${k===q.a?'ok':k===a?'no':''}'><b>${L[k]}</b><span>${esc(t)}</span></div>`).join('')}
-      <div class='exp'><b>Giải thích:</b> ${esc(ex)}
-      ${a!=null&&!good?`<br><span class='note'>Bạn đã chọn ${L[a]}.</span>`:''}
-      ${q.img?`<br><span class='note'>📎 Câu này có hình vẽ/công thức trong đề gốc, hãy đối chiếu để hiểu rõ hơn.</span>`:''}</div>
+      <div class='q'>${rich(q.q)}</div>
+      ${q.o.map((t,k)=>`<div class='opt ${k===q.a?'ok':k===a?'no':''}'><b>${L[k]}</b><span>${rich(t)}</span></div>`).join('')}
+      <div class='exp'><b>Giải thích:</b> ${rich(ex)}
+      ${a!=null&&!good?`<br><span class='note'>Bạn đã chọn ${L[a]}.</span>`:''}</div>
     </div>`;
   }).join('')||`<div class='card'>Không có câu nào sai 🎉</div>`;
 }
