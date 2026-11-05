@@ -4,6 +4,7 @@
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>Trắc nghiệm Cơ kỹ thuật</title>
+<link rel='icon' href='img/logo.png'>
 <style>
 :root{--bg:#f4f6fb;--card:#fff;--tx:#1d2433;--mut:#6b7385;--bd:#dde2ee;--pri:#2457d6;--ok:#16a34a;--okbg:#e7f7ee;--no:#dc2626;--nobg:#fdeaea}
 @media(prefers-color-scheme:dark){:root{--bg:#10141d;--card:#1a2030;--tx:#e8ecf6;--mut:#9aa3b8;--bd:#2c3550;--pri:#6c93ff;--ok:#4ade80;--okbg:#12301f;--no:#f87171;--nobg:#3a1a1a}}
@@ -49,22 +50,31 @@ img.i{height:1.6em;width:auto;vertical-align:middle;padding:0 2px}
 .ticker span{display:inline-block;padding-left:100%;animation:run 16s linear infinite}
 @keyframes run{to{transform:translateX(-100%)}}
 @media(prefers-reduced-motion:reduce){.ticker{text-align:center;white-space:normal}.ticker span{padding-left:0;animation:none}}
+.logo{display:block;width:112px;height:112px;margin:0 auto 10px;background:none;border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.score .logo{width:92px;height:92px;margin-bottom:12px}
+.hero{text-align:center;margin:6px 0 18px}
+.hero h1{margin:.1em 0}
+.hero .sub{margin:0}
 .hide{display:none}
 </style>
 </head>
 <body>
 <div id='ticker' class='ticker'><span id='tickertxt'>🔥 Ngày thi còn chưa tới, nỗ lực quyết không vơi! 🔥</span></div>
 <div class='wrap'>
+<section id='start'>
+<div class='hero'>
+<img class='logo' src='img/logo.png' alt='tuanedc83'>
 <h1>Trắc nghiệm Cơ kỹ thuật</h1>
 <p class='sub'>Nghề Vận hành lò hơi · Trường Cao đẳng Than – Khoáng sản Việt Nam</p>
-
-<section id='start' class='card'>
+</div>
+<div class='card'>
 <label for='chap'>Phạm vi ôn tập</label><select id='chap'></select>
 <label for='num'>Số câu hỏi</label>
 <select id='num'><option value='0'>Tất cả</option><option value='10'>10 câu</option><option value='20' selected>20 câu</option><option value='30'>30 câu</option><option value='40'>40 câu</option><option value='50'>50 câu</option></select>
 <label><input type='checkbox' id='shuf' checked> Xáo trộn thứ tự câu hỏi</label>
 <p><button class='btn' id='go'>Bắt đầu làm bài</button></p>
 <p class='note'>Chọn đáp án cho từng câu rồi bấm Nộp bài để xem điểm và giải thích. Phím tắt: A–D hoặc 1–4 để chọn, ← → để chuyển câu.</p>
+</div>
 </section>
 
 <section id='quiz' class='hide'>
@@ -84,6 +94,7 @@ img.i{height:1.6em;width:auto;vertical-align:middle;padding:0 2px}
 
 <section id='result' class='hide'>
 <div class='card score'>
+<img class='logo' src='img/logo.png' alt='tuanedc83'>
 <div class='note' id='grade'></div>
 <div class='big' id='big'></div>
 <p id='detail'></p>
