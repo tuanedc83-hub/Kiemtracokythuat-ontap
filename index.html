@@ -45,10 +45,15 @@ img.i{height:1.6em;width:auto;vertical-align:middle;padding:0 2px}
 .pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.8rem;background:var(--bd);color:var(--mut);margin-right:6px}
 .exp{margin-top:10px;padding:10px 14px;border-left:4px solid var(--pri);background:color-mix(in srgb,var(--pri) 8%,var(--card));border-radius:8px;font-size:.95rem}
 .note{color:var(--mut);font-size:.9rem}
+.ticker{position:sticky;top:0;z-index:10;overflow:hidden;white-space:nowrap;background:var(--pri);color:#fff;padding:8px 0;font-weight:600}
+.ticker span{display:inline-block;padding-left:100%;animation:run 16s linear infinite}
+@keyframes run{to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.ticker{text-align:center;white-space:normal}.ticker span{padding-left:0;animation:none}}
 .hide{display:none}
 </style>
 </head>
 <body>
+<div id='ticker' class='ticker'><span id='tickertxt'>🔥 Ngày thi còn chưa tới, nỗ lực quyết không vơi! 🔥</span></div>
 <div class='wrap'>
 <h1>Trắc nghiệm Cơ kỹ thuật</h1>
 <p class='sub'>Nghề Vận hành lò hơi · Trường Cao đẳng Than – Khoáng sản Việt Nam</p>
@@ -109,7 +114,12 @@ const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 // Ký hiệu §f:tên§ (hình), §o:tên§ (công thức phương án), §i:tên§ (công thức nhỏ) được đổi thành ảnh trong thư mục img
 const rich=s=>esc(s).replace(/§([fio]):(\w+)§/g,(m,c,n)=>`<img class='${c}' src='img/${n}.png' alt=''>`);
 const fmt=ms=>{const s=Math.floor(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
-const view=v=>['start','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==v));
+const view=v=>{['start','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==v));setTicker(v)};
+const MSG={home:'🔥 Ngày thi còn chưa tới, nỗ lực quyết không vơi! 🔥',quiz:'💪 Dốt đến đâu học lâu cũng biết! 💪'};
+function setTicker(v){
+  const t=$('tickertxt'),m=v==='quiz'?MSG.quiz:MSG.home;
+  if(t.textContent!==m){t.textContent=m;t.style.animation='none';void t.offsetWidth;t.style.animation=''}
+}
 let S={};
 
 $('chap').innerHTML='<option value=all>Tất cả '+Q.length+' câu</option>'+CH.map((c,i)=>`<option value='${i}'>${c[0]} (${c[2]-c[1]} câu)</option>`).join('');
