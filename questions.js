@@ -39,7 +39,7 @@ const RAW=[
 ['Hệ số ma sát phụ thuộc vào ...',['độ nhẵn của bề mặt tiếp xúc, không phụ thuộc vào diện tích tiếp xúc.','độ nhẵn của bề mặt tiếp xúc, tính chất vật liệu của hai vật.','độ nhẵn của bề mặt tiếp xúc, tính chất vật liệu của hai vật, phụ thuộc vào diện tích tiếp xúc.','tính chất vật liệu của hai vật, không phụ thuộc vào diện tích tiếp xúc.'],1],
 ['Xác định mômen ngẫu lực? §f:image17§',['m = -F.a','m = +F/a','m = +F.a','m = -F/a'],2],
 ['Nguyên nhân sinh ra lực ma sát trượt là:',['Do bề mặt tiếp xúc giữa các vật không tuyệt đối nhẵn.','Do bề mặt tiếp xúc.','Do điều kiện môi trường.'],0],
-['Cho hình chữ nhật OABC đặt trong hệ trục xOy như hình vẽ. Cạnh OA = 3m, AB = 5m. Độ lớn lực F­­₁ = 3N đặt tại điểm A thì mô men của lực §i:image18§ đối với điểm O là: §i:image19§',['- 9Nm','15Nm','9Nm','-15Nm'],0],
+['Cho hình chữ nhật OABC đặt trong hệ trục xOy như hình vẽ. Cạnh OA = 3m, AB = 5m. Độ lớn lực F­­₁ = 3N đặt tại điểm A thì mô men của lực §i:image18§ đối với điểm O là: §m:image19§',['- 9Nm','15Nm','9Nm','-15Nm'],0],
 ['Ngẫu lực sinh ra trong trường hợp:',['Quay vô lăng xe.','Tarô ren.','Vặn vít.','Quay vô lăng xe, tarô ren, vặn vít.'],3],
 ['Một dầm liên tục gồm hai nhịp có kết cấu và chịu lực như hình vẽ. Biết a = 0,5m; q = 60kN/m; F= 80N; Mo = 10kNm. Mô men của lực F với điểm B: §f:image20§',['mB §i:image21§ = 200N.m','mB §i:image21§ = -200N.m','mB §i:image21§ = - 40N.m','mB §i:image21§ = 40N.m'],3],
 ['Khi treo vật có trọng lượng Q ở giữa thanh (coi trọng lượng của thanh không đáng kể), lực căng tác dụng lên hai dây được cho trên hình vẽ lần lượt có giá trị là: §f:image22§',['Ta = Tb = Q/2.','Ta = Tb = Q.','Ta = Tb = Q.l','Ta = Tb = Q/l.'],0],
@@ -72,7 +72,7 @@ const RAW=[
 ['Ứng suất pháp có phương ...',['song song với mặt cắt.','vuông góc với mặt cắt.','hợp với mặt phẳng cắt một góc 45⁰.','hợp với mặt phẳng cắt một góc 60⁰.'],1],
 ['Đối với thanh chịu kéo, nội lực có hướng ...',['từ ngoài vào trong thanh.','từ trong ra ngoài thanh.','vuông góc với thanh.','cùng hướng với phản lực.'],0],
 ['Đối với thanh chịu nén, nội lực có hướng ...',['vào trong thanh.','từ trong ra ngoài thanh.','vuông góc với thanh.','song song với thanh.'],1],
-['Cho hệ thanh chịu lực như hình vẽ dưới, kết luận nào sau đây đúng? §i:image40§',['Thanh 1 chịu kéo, thanh 2 chịu nén.','Thanh 1 chịu nén, thanh 2 chịu kéo.','Cả thanh 1 và 2 chịu kéo.','Cả thanh 1 và 2 chịu nén.'],0],
+['Cho hệ thanh chịu lực như hình vẽ dưới, kết luận nào sau đây đúng? §f:image40§',['Thanh 1 chịu kéo, thanh 2 chịu nén.','Thanh 1 chịu nén, thanh 2 chịu kéo.','Cả thanh 1 và 2 chịu kéo.','Cả thanh 1 và 2 chịu nén.'],0],
 ['Đơn vị nào ở dưới không phải là đơn vị tính ứng suất?',['MN/m','KN/m2','N/m2','N/mm2'],0],
 ['Khi kiểm tra độ bền của đinh tán, cần kiểm tra ứng suất ...',['cắt.','dập.','cắt và dập','uốn và xoắn'],2],
 ['Để xác định ứng suất, dùng phương pháp ...',['mặt cắt.','chiếu lực.','hình bình hành lực.','tam giác lực.'],0],
@@ -105,7 +105,7 @@ const RAW=[
 ['Khớp nối trục là một bộ phận cơ khí để nối và truyền.... giữa hai thành phần chuyển động.',['mô men uốn','mô men xoắn','ứng suất dập','ứng suất nén'],1],
 ['Xích là một chuỗi các mắt xích nối với nhau bằng ....',['đinh tán','ốc, vít','bản lề','hàn'],2],
 ['Bánh răng theo hình vẽ dưới là loại bánh răng gì? §f:image51§',['Bánh răng thẳng','Bánh răng trụ chéo','Bánh răng xoắn (nghiêng)','bánh răng nón chéo'],2],
-['Khi ghép hai cấu kiện vào nhau bằng đinh tán thì ...',['thân đinh chịu lực cắt và dập, mũ đinh không chịu lực.','thân đinh chịu lực cắt, mũ đinh chịu lực dập.','thân đinh chịu lực kéo, mũ đinh chịu lực nén.','thân đinh chịu lực nén, mũ đinh chịu lực kéo.'],1],
+['Khi ghép hai cấu kiện vào nhau bằng đinh tán thì ...',['thân đinh chịu lực cắt và dập, mũ đinh không chịu lực.','thân đinh chịu lực cắt, mũ đinh chịu lực dập.','thân đinh chịu lực kéo, mũ đinh chịu lực nén.','thân đinh chịu lực nén, mũ đinh chịu lực kéo.'],0],
 ['Cơ cấu truyền động trong máy cuốn chỉ là dạng cơ cấu ...',['cam -- cần đẩy.','cam -- cần lắc.','tay quay con trượt.','bánh răng -- thanh răng.'],0],
 ['Hình vẽ sau thể hiện mối ghép gì? §f:image52§',['Đinh tán.','Ghép then bằng.','Ghép then vát.','Ghép then bán nguyệt'],2],
 ['Chi tiết máy được chia làm mấy nhóm?',['1','2','3','4'],1],
@@ -113,3 +113,5 @@ const RAW=[
 ['Cơ cấu biến chuyển động tịnh tiến của piston thành chuyển động quay đều của trục cơ sở ở động cơ đốt trong là...',['Cơ cấu trục vít - bánh vít.','Cơ cấu bánh răng -- thanh răng.','Cơ cấu cóc.','Cơ cấu tay quay -- con trượt.'],3],
 ['Ổ đỡ là ổ chỉ có khả năng chịu lực...',['Quán tính.','Hướng tâm.','Dọc trục.','Lực từ trường.'],1]
 ];
+// Độ rộng hiển thị (px) của ảnh công thức ở các phương án, cùng một tỉ lệ để chữ đồng đều
+const OW={'image27': 110, 'image28': 110, 'image29': 111, 'image30': 111, 'image31': 106, 'image32': 105, 'image33': 106, 'image34': 106, 'image35': 107, 'image36': 108, 'image37': 107, 'image38': 107, 'image43': 107, 'image44': 108, 'image45': 108, 'image46': 107, 'image47': 105, 'image48': 108, 'image49': 107, 'image50': 107};

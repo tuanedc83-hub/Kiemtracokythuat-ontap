@@ -35,7 +35,8 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);bac
 .rev .opt:not(.ok):not(.no):hover{border-color:var(--bd)}
 img{background:#fff;border-radius:6px}
 img.f{display:block;max-width:100%;max-height:340px;width:auto;height:auto;margin:10px auto;padding:6px}
-img.o{height:48px;max-width:100%;width:auto}
+img.o{height:auto;max-width:100%}
+img.m{display:block;height:128px;width:auto;max-width:100%;margin:10px auto;padding:6px}
 img.i{height:1.6em;width:auto;vertical-align:middle;padding:0 2px}
 .grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .grid button{width:36px;height:36px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer}
@@ -122,8 +123,8 @@ const clean=s=>s.replace(/[ >]+$/,'');
 const Q=RAW.map((r,i)=>({id:i+1,q:clean(r[0]),o:r[1].map(clean),a:r[2]}));
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-// Ký hiệu §f:tên§ (hình), §o:tên§ (công thức phương án), §i:tên§ (công thức nhỏ) được đổi thành ảnh trong thư mục img
-const rich=s=>esc(s).replace(/§([fio]):(\w+)§/g,(m,c,n)=>`<img class='${c}' src='img/${n}.png' alt=''>`);
+// Ký hiệu §f:tên§ (hình lớn), §m:tên§ (hình vừa), §o:tên§ (công thức phương án), §i:tên§ (công thức nhỏ) được đổi thành ảnh trong thư mục img
+const rich=s=>esc(s).replace(/§([fiom]):(\w+)§/g,(m,c,n)=>`<img class='${c}' src='img/${n}.png' alt=''${c==='o'&&OW[n]?` style='width:${OW[n]}px'`:''}>`);
 const fmt=ms=>{const s=Math.floor(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
 const view=v=>{['start','quiz','result'].forEach(x=>$(x).classList.toggle('hide',x!==v));setTicker(v)};
 const MSG={home:'🔥 Ngày thi còn chưa tới, nỗ lực quyết không vơi! 🔥',quiz:'💪 Dốt đến đâu học lâu cũng biết! 💪'};
